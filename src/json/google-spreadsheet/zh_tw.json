@@ -1,0 +1,144 @@
+{
+  "nav_st_cn": "髮型師介紹",
+  "nav_st_en": "STYLIST",
+  "nav_wo_cn": "作品展示",
+  "nav_wo_en": "WORK",
+  "nav_me_cn": "價目表",
+  "nav_me_en": "MENU",
+  "nav_pr_cn": "最新消息",
+  "nav_pr_en": "NEWS",
+  "nav_ab_cn": "關於我們",
+  "nav_ab_en": "ABOUT US",
+  "nav_cu_cn": "聯絡我們",
+  "nav_cu_en": "CONTACT",
+  "main_top_title": "體驗最優質服務",
+  "main_top_des": "讓你體驗最優質的美髮、美甲、美容全然享受，搭配專業設計師的判斷力，打造更完美的您",
+  "main_bot_1": "Are You Ready ?",
+  "main_bot_2": "Go !",
+  "st_title_cn": "髮型師介紹",
+  "st_title_en": "STYLIST",
+  "st_profiles_name": [
+    "TOM CHAN1",
+    "TOM2 CHAN",
+    "TOM CHAN3",
+    "TOM CHAN4",
+    "TOM CHAN5",
+    "TOM CHAN6",
+    "TOM CHAN7",
+    "TOM CHAN8"
+  ],
+  "st_profiles_pos": [
+    "Creative hair Artist",
+    "Creative hair Artist",
+    "Creative hair Artist",
+    "Creative hair Artist",
+    "Creative hair Artist",
+    "Creative hair Artist",
+    "Creative hair Artist",
+    "Creative hair Artist"
+  ],
+  "st_profiles_des": [
+    "<li>擁有超過20年髮型設計經驗</li><li>曾為多個國際時裝品牌設計髮型，如Giorgio Armani等</li><li>曾擔任香港多名演藝明星的髮型設計師，包括朱茵及張玉珊</li><li>曾為多個國際時裝品牌設計髮型，如Giorgio Armani等</li><li>曾擔任香港多名演藝明星的髮型設計師，包括朱茵及張玉珊</li>",
+    "<li>擁有超過20年髮型設計經驗</li>\r\n<li>曾為多個國際時裝品牌設計髮型，如Giorgio Armani等</li>\r\n<li>曾擔任香港多名演藝明星的髮型設計師，包括朱茵及張玉珊</li>\r\n<li>曾為多個國際時裝品牌設計髮型，如Giorgio Armani等</li>\r\n<li>曾擔任香港多名演藝明星的髮型設計師，包括朱茵及張玉珊</li>",
+    "<li>擁有超過20年髮型設計經驗</li>\r\n<li>曾為多個國際時裝品牌設計髮型，如Giorgio Armani等</li>\r\n<li>曾擔任香港多名演藝明星的髮型設計師，包括朱茵及張玉珊</li>\r\n<li>曾為多個國際時裝品牌設計髮型，如Giorgio Armani等</li>\r\n<li>曾擔任香港多名演藝明星的髮型設計師，包括朱茵及張玉珊</li>",
+    "<li>擁有超過20年髮型設計經驗</li>\r\n<li>曾為多個國際時裝品牌設計髮型，如Giorgio Armani等</li>\r\n<li>曾擔任香港多名演藝明星的髮型設計師，包括朱茵及張玉珊</li>\r\n<li>曾為多個國際時裝品牌設計髮型，如Giorgio Armani等</li>\r\n<li>曾擔任香港多名演藝明星的髮型設計師，包括朱茵及張玉珊</li>",
+    "<li>擁有超過20年髮型設計經驗</li>\r\n<li>曾為多個國際時裝品牌設計髮型，如Giorgio Armani等</li>\r\n<li>曾擔任香港多名演藝明星的髮型設計師，包括朱茵及張玉珊</li>\r\n<li>曾為多個國際時裝品牌設計髮型，如Giorgio Armani等</li>\r\n<li>曾擔任香港多名演藝明星的髮型設計師，包括朱茵及張玉珊</li>",
+    "<li>擁有超過20年髮型設計經驗</li>\r\n<li>曾為多個國際時裝品牌設計髮型，如Giorgio Armani等</li>\r\n<li>曾擔任香港多名演藝明星的髮型設計師，包括朱茵及張玉珊</li>\r\n<li>曾為多個國際時裝品牌設計髮型，如Giorgio Armani等</li>\r\n<li>曾擔任香港多名演藝明星的髮型設計師，包括朱茵及張玉珊</li>",
+    "<li>擁有超過20年髮型設計經驗</li>\r\n<li>曾為多個國際時裝品牌設計髮型，如Giorgio Armani等</li>\r\n<li>曾擔任香港多名演藝明星的髮型設計師，包括朱茵及張玉珊</li>\r\n<li>曾為多個國際時裝品牌設計髮型，如Giorgio Armani等</li>\r\n<li>曾擔任香港多名演藝明星的髮型設計師，包括朱茵及張玉珊</li>",
+    "<li>擁有超過20年髮型設計經驗</li>\r\n<li>曾為多個國際時裝品牌設計髮型，如Giorgio Armani等</li>\r\n<li>曾擔任香港多名演藝明星的髮型設計師，包括朱茵及張玉珊</li>\r\n<li>曾為多個國際時裝品牌設計髮型，如Giorgio Armani等</li>\r\n<li>曾擔任香港多名演藝明星的髮型設計師，包括朱茵及張玉珊</li>"
+  ],
+  "st_profiles_img": [
+    "StylistA.png",
+    "StylistA.png",
+    "StylistA.png",
+    "StylistA.png",
+    "StylistA.png",
+    "StylistA.png",
+    "StylistA.png",
+    "StylistA.png"
+  ],
+  "st_profiles_img_big": [
+    "StylistA_bigsize.png",
+    "StylistA_bigsize.png",
+    "StylistA_bigsize.png",
+    "StylistA_bigsize.png",
+    "StylistA_bigsize.png",
+    "StylistA_bigsize.png",
+    "StylistA_bigsize.png",
+    "StylistA_bigsize.png"
+  ],
+  "wo_title_cn": "作品展示",
+  "wo_title_en": "WORK",
+  "wo_btn_more": "查看更多",
+  "me_title_cn": "價目表",
+  "me_title_en": "MENU",
+  "me_a_title": "髮型設計",
+  "me_b_title": "頭髮護理",
+  "me_c_title": "直髮 / 曲髮 + 剪髮 + 電前護理",
+  "me_d_title": "染髮 / 挑染 + 剪髮 + 護理",
+  "me_a_type": [
+    "洗剪吹",
+    "洗吹"
+  ],
+  "me_a_price": [
+    "$498",
+    "$598"
+  ],
+  "me_b_type": [
+    "IDA",
+    "JOICO",
+    "B5 / MILBON",
+    "GK / Milbon INPHENOM"
+  ],
+  "me_b_price": [
+    "$498",
+    "$598",
+    "$898",
+    "$1,198"
+  ],
+  "me_b_memo": "* 以上價格包括洗剪吹服務",
+  "me_c_type": [
+    "IDA",
+    "JOICO",
+    "B5 / MILBON",
+    "GK / Milbon INPHENOM"
+  ],
+  "me_c_price": [
+    "$498",
+    "$598",
+    "$898",
+    "$1,198"
+  ],
+  "me_d_type": [
+    "IDA",
+    "JOICO",
+    "B5 / MILBON"
+  ],
+  "me_d_price": [
+    "$498",
+    "$598",
+    "$898"
+  ],
+  "pr_title_cn": "最新消息",
+  "pr_title_en": "NEWS",
+  "ab_title_cn": "關於我們",
+  "ab_title_en": "ABOUT US",
+  "ab_context_1": "星級尊貴美髮集團",
+  "ab_context_2": "讓你體驗最優質的美髮",
+  "ab_des": "成立於1987年，至今已經30年，是香港歷史最悠久的一間美髮美容集團，成立初期主要客戶是影視紅星及上流社會人士，隨後積極拓展業務並在短短十年間開設了超過10間髮廊，遍佈香港多個經濟及旅遊據點。於2000年更將日本美甲熱潮帶到香港並開設首間美甲專門店，成為一時佳話。成立於1987年，至今已經30年，是香港歷史最悠久的一間美髮美容集團。",
+  "tr_title_cn": "發現寶藏",
+  "tr_title_en": "Discover The Treasure",
+  "cu_title_cn": "聯絡我們",
+  "cu_title_en": "CONTACT US",
+  "cu_add_cn": "尖沙咀棉登徑22-26號恒成大廈地庫",
+  "cu_add_en": "Basement, Goldsland Building, 22-26 Minden Avenue",
+  "cu_email": "Lavignehair@gmail.com",
+  "cu_phone": "34605171",
+  "cu_time": "11:00am - 09:00pm",
+  "copyRight": [
+    "Copyright ©",
+    "Curious Rabbit",
+    "All Rights Reserved",
+    "Powered by BIB Solution LTD."
+  ]
+}

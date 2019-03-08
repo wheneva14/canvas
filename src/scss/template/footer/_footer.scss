@@ -1,0 +1,34 @@
+@import "../text/_textStyle";
+@import "../grid/_grid";
+@import "../section/_sectionsStyle";
+
+footer{
+    a{
+        color: #fff;
+    }
+
+	.list-marked{
+    	margin-bottom: 10px;
+    	li{
+    		padding-left: 25px;
+    	}
+	}
+
+	.list-sub{
+		margin-top: 12px;
+		font-size: 13px;
+		li{
+	    	padding-left: 25px;
+		}
+	}
+
+	.footerContact{
+		padding-left: 0px;
+		li{
+			display: inline-block;
+			width: 35px;
+			margin-right: 10px;
+		}
+	}
+
+}

@@ -1,0 +1,55 @@
+/**
+*** FUNCTIONS
+**/
+
+@function font-size($key) {
+    @if map-has-key($font-sizes, $key) {
+    @return map-get($font-sizes, $key);
+    }
+    @warn "Unknown `#{$key}` in $font-sizes.";
+    @return null;
+}
+
+@function color($key) {
+    @if map-has-key($colors, $key) {
+    @return map-get($colors, $key);
+    }
+    @warn "Unknown `#{$key}` in $colors.";
+    @return null;
+}
+
+@function length($key) {
+    @if map-has-key($lengths, $key) {
+    @return map-get($lengths, $key);
+    }
+    @warn "Unknown `#{$key}` in $lengths.";
+    @return null;
+}
+
+/**
+ * MISC
+ */
+
+@mixin border-box {
+    box-sizing: border-box;
+}
+
+@mixin reset-line-height {
+    line-height: normal;
+}
+
+/**
+ * FIGHTING WITH SPACES BETWEEN INLINE-BLOCK
+ */
+
+@mixin child-inline-block-no-space {
+    font-size: 0;
+    > * {
+        font-size: 1rem;
+        // font-size: font-size(default);
+    }
+}
+
+
+
+@import './mixins/mixin-breakpoint';

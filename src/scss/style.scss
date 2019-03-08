@@ -1,0 +1,37 @@
+// @import './template/header/_header';
+// @import './template/accordion/_accordion';
+// @import './template/footer/_footer';
+// @import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond');
+@import '_index';
+
+
+body{
+	margin: 0px;
+	padding: 0px;
+	// overflow-x: hidden;
+	position: relative;
+	font-size: 0;
+}
+
+div{
+	box-sizing: border-box;
+}
+
+a:link, a:visited, a:hover, a:active {
+	text-decoration: none;
+	color: unset;
+}
+
+h1, h2, h3, h4, p {
+	margin: 0;
+}
+
+*{
+	outline: none;
+}
+
+html,
+body {
+	position: fixed;
+	// overflow: hidden;
+}

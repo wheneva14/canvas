@@ -1,0 +1,48 @@
+// Remove the unit of a length
+// @param {Number} $number - Number to remove unit from
+// @return {Number} - Unitless number
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+
+//
+// Indent Utilities
+// --------------------------------------------------
+
+@mixin indent-responsive($preffix, $postfix, $rules, $medias, $offsets) {
+  @if ($postfix != '' and $postfix != null) {
+    $postfix: #{$postfix}-;
+  }
+
+  @if ($preffix != '' and $preffix != null) {
+    $preffix: #{$preffix}-;
+  }
+
+  @each $resolution, $alias in $medias {
+    @if ($resolution == 0) {
+      @each $offset in $offsets {
+        .#{$preffix}#{$postfix}#{strip-unit($offset)} {
+          @each $rule in $rules {
+            #{$rule}: $offset;
+          }
+        }
+      }
+    } @else {
+      @media (min-width: $resolution) {
+        @each $offset in $offsets {
+          .#{$preffix}#{$alias}-#{$postfix}#{strip-unit($offset)} {
+            @each $rule in $rules {
+              #{$rule}: $offset;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

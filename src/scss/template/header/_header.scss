@@ -1,0 +1,84 @@
+@import '../_variables';
+@import '../_vendors-custom';
+@import '../_vendor-prefixes';
+
+
+@import './custom/mixins/_backgrounds';
+@import './custom/mixins/_flex';
+@import './custom/mixins/_buttons';
+@import './custom/_context-styling';
+@import './custom/_materialdesignicons';
+@import '../bootstrap/mixins/_buttons';
+@import '../bootstrap/mixins/_clearfix';
+@import '../bootstrap/mixins/_background-variant';
+@import '../bootstrap/mixins/_text-emphasis';
+@import '../bootstrap/mixins/_text-overflow';
+@import '../bootstrap/_type';
+@import '../bootstrap/_type-custom';
+
+
+
+@import "./rd-navbar_includes/rd-navbar-mixins";
+@import "./rd-navbar_includes/rd-navbar";
+@import "./rd-navbar_includes/_rd-navbar-default-panel";
+@import "./rd-navbar_includes/_rd-navbar-sidebar-toggle-panel";
+@import "./rd-navbar_includes/_rd-navbar-default-cart";
+@import "./rd-navbar_includes/_rd-navbar-default-aside-left";
+@import "./rd-navbar_includes/_rd-navbar-default-mobile-menu";
+@import "./rd-navbar_includes/_rd-navbar-default-cart-aside-right";
+@import "./rd-navbar_includes/_rd-navbar-default-mobile-search";
+@import "./rd-navbar_includes/_rd-navbar-default-menu-first-lvl";
+@import "./rd-navbar_includes/_rd-navbar-default-menu-dropdown";
+@import "./rd-navbar_includes/_rd-navbar-default-desktop-cart";
+@import "./rd-navbar_includes/_rd-navbar-default-search";
+@import "./rd-navbar_includes/_rd-navbar-sidebar-toggle-footer";
+@import "./rd-navbar_includes/_rd-navbar-sidebar-fixed-panel";
+@import "./rd-navbar_includes/_rd-navbar-sidebar-fixed-menu-wrap";
+@import "./rd-navbar_includes/_rd-navbar-sidebar-fixed-search";
+@import "./rd-navbar_includes/_rd-navbar-top-panel-top";
+@import "./rd-navbar_includes/_rd-navbar-logo-center-menu-first-lvl";
+@import "./rd-navbar_includes/rd-navbar-default";
+@import "./rd-navbar_includes/rd-navbar-sidebar-toggle";
+@import "./rd-navbar_includes/rd-navbar-sidebar-fixed";
+@import "./rd-navbar_includes/rd-navbar-floated";
+@import "./rd-navbar_includes/rd-navbar-top-panel";
+@import "./rd-navbar_includes/rd-navbar-logo-center";
+
+
+.top_icon{
+	width: 35px;
+    height: 35px;
+    line-height: 35px;
+}
+
+.rd-navbar-top-links{
+
+	a{
+	   display: block;
+	   color: #fff;
+	}	
+
+	&>li{
+		display	: inline-block;
+		vertical-align: middle;
+	}
+}
+
+.rd-navbar-top-panel.rd-navbar-light .contact-info .icon,.rd-navbar .telLink{
+	color: #ffa200;
+}
+
+
+
+
+@media (max-width: 1200px) and (min-width: 550px) {
+ 	.rd-navbar-default.rd-navbar-fixed, .rd-navbar-floated.rd-navbar-fixed, .rd-navbar-top-panel.rd-navbar-fixed, .rd-navbar-default.rd-navbar-fixed .rd-navbar-panel, .rd-navbar-floated.rd-navbar-fixed .rd-navbar-panel, .rd-navbar-top-panel.rd-navbar-fixed .rd-navbar-panel {
+	    height: 76px;
+	}
+	.rd-navbar-default.rd-navbar-fixed .rd-navbar-toggle, .rd-navbar-floated.rd-navbar-fixed .rd-navbar-toggle, .rd-navbar-top-panel.rd-navbar-fixed .rd-navbar-toggle , .rd-navbar-fixed.rd-navbar-top-panel .rd-navbar-top-panel-toggle span{
+	    top: 14px;
+	}
+	.rd-navbar-default.rd-navbar-fixed .rd-navbar-nav-wrap, .rd-navbar-sidebar-toggle.rd-navbar-fixed .rd-navbar-nav-wrap, .rd-navbar-floated.rd-navbar-fixed .rd-navbar-nav-wrap, .rd-navbar-top-panel.rd-navbar-fixed .rd-navbar-nav-wrap{
+	top: 20px;
+	}
+}

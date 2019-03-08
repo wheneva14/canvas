@@ -1,0 +1,293 @@
+/**
+ * # BOOTSTRAP DEFAULT
+// Extra small screen / phone
+//** Deprecated `$screen-xs` as of v3.0.1
+$screen-xs:                  480px !default;
+//** Deprecated `$screen-xs-min` as of v3.2.0
+$screen-xs-min:              $screen-xs !default;
+//** Deprecated `$screen-phone` as of v3.0.1
+$screen-phone:               $screen-xs-min !default;
+
+// Small screen / tablet
+//** Deprecated `$screen-sm` as of v3.0.1
+$screen-sm:                  768px !default;
+$screen-sm-min:              $screen-sm !default;
+//** Deprecated `$screen-tablet` as of v3.0.1
+$screen-tablet:              $screen-sm-min !default;
+
+// Medium screen / desktop
+//** Deprecated `$screen-md` as of v3.0.1
+$screen-md:                  992px !default;
+$screen-md-min:              $screen-md !default;
+//** Deprecated `$screen-desktop` as of v3.0.1
+$screen-desktop:             $screen-md-min !default;
+
+// Large screen / wide desktop
+//** Deprecated `$screen-lg` as of v3.0.1
+$screen-lg:                  1200px !default;
+$screen-lg-min:              $screen-lg !default;
+//** Deprecated `$screen-lg-desktop` as of v3.0.1
+$screen-lg-desktop:          $screen-lg-min !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max:              ($screen-sm-min - 1) !default;
+$screen-sm-max:              ($screen-md-min - 1) !default;
+$screen-md-max:              ($screen-lg-min - 1) !default;
+
+*/
+
+// BEST COMBINATIONS: 600px, 900px 1200px, 1800px
+
+
+
+
+//$screen-md:                  1024px;
+//$screen-md-min:              $screen-md;
+//$screen-desktop:             $screen-md-min;
+//$screen-sm-max:              ($screen-md-min - 1);
+
+
+// Extra small screen / phone
+$device-width--xs-min:              0;
+// Small screen / tablet portrait
+$device-width--sm-min:              600px;
+// Medium screen / tablet landscape
+$device-width--md-min:              900px;
+// Large screen / desktop
+$device-width--lg-min:              1200px;
+// Large screen / wide desktop
+$device-width--xl-min:              1800px;
+// So media queries don't overlap when required, provide a maximum
+$device-width--xs-max:              ($device-width--sm-min - 1);
+$device-width--sm-max:              ($device-width--md-min - 1);
+$device-width--md-max:              ($device-width--lg-min - 1);
+$device-width--lg-max:              ($device-width--xl-min - 1);
+
+$device-height--xs-min:             0;
+$device-height--sm-min:             600px;
+$device-height--md-min:             800px;
+$device-height--lg-min:             1000px;
+$device-height--xl-min:             1200px;
+
+$device-height--xs-max:              ($device-height--sm-min - 1);
+$device-height--sm-max:              ($device-height--md-min - 1);
+$device-height--md-max:              ($device-height--lg-min - 1);
+$device-height--lg-max:              ($device-height--xl-min - 1);
+
+/**
+*** DEVICE WIDTH
+**/
+
+@mixin for-width--xs-only {
+    @media (max-width: $device-width--sm-min - 1px) { @content; }
+}
+@mixin for-width--xs-down {
+    @media (max-width: $device-width--sm-min - 1px) { @content; }
+}
+
+@mixin for-width--sm-only {
+    @media (min-width: $device-width--sm-min) and (max-width: $device-width--sm-max) { @content; }
+}
+@mixin for-width--sm-up {
+    @media (min-width: $device-width--sm-min) { @content; }
+}
+@mixin for-width--sm-down {
+    @media (max-width: $device-width--sm-max) { @content; }
+}
+
+@mixin for-width--md-only {
+    @media (min-width: $device-width--md-min) and (max-width: $device-width--md-max) { @content; }
+}
+@mixin for-width--md-up {
+    @media (min-width: $device-width--md-min) { @content; }
+}
+@mixin for-width--md-down {
+    @media (max-width: $device-width--md-max) { @content; }
+}
+
+@mixin for-width--lg-only {
+    @media (min-width: $device-width--lg-min) and (max-width: $device-width--lg-max) { @content; }
+}
+@mixin for-width--lg-up {
+    @media (min-width: $device-width--lg-min) { @content; }
+}
+@mixin for-width--lg-down {
+    @media (max-width: $device-width--lg-max) { @content; }
+}
+
+@mixin for-width--xl-only {
+    @media (min-width: $device-width--xl-min) { @content; }
+}
+@mixin for-width--xl-up {
+    @media (min-width: $device-width--xl-min) { @content; }
+}
+
+/**
+*** DEVICE HEIGHT
+**/
+
+@mixin for-height--xs-only {
+    @media (max-height: $device-height--sm-min - 1px) { @content; }
+}
+@mixin for-height--xs-down {
+    @media (max-height: $device-height--sm-min - 1px) { @content; }
+}
+
+@mixin for-height--sm-only {
+    @media (min-height: $device-height--sm-min) and (max-height: $device-height--sm-max) { @content; }
+}
+@mixin for-height--sm-up {
+    @media (min-height: $device-height--sm-min) { @content; }
+}
+@mixin for-height--sm-down {
+    @media (max-height: $device-height--sm-max) { @content; }
+}
+
+@mixin for-height--md-only {
+    @media (min-height: $device-height--md-min) and (max-height: $device-height--md-max) { @content; }
+}
+@mixin for-height--md-up {
+    @media (min-height: $device-height--md-min) { @content; }
+}
+@mixin for-height--md-down {
+    @media (max-height: $device-height--md-max) { @content; }
+}
+
+@mixin for-height--lg-only {
+    @media (min-height: $device-height--lg-min) and (max-height: $device-height--lg-max) { @content; }
+}
+@mixin for-height--lg-up {
+    @media (min-height: $device-height--lg-min) { @content; }
+}
+@mixin for-height--lg-down {
+    @media (max-height: $device-height--lg-max) { @content; }
+}
+
+@mixin for-height--xl-only {
+    @media (min-height: $device-height--xl-min) { @content; }
+}
+@mixin for-height--xl-up {
+    @media (min-height: $device-height--xl-min) { @content; }
+}
+
+
+
+/**
+*** DEVICE COMBINE
+**/
+
+// @mixin for-device--xs-only {
+//     @media (max-width: $device-width--sm-min - 1px) and (max-height: $device-height--sm-min - 1px) { @content; }
+// }
+// @mixin for-device--xs-down {
+//     @media (max-width: $device-width--sm-min - 1px) and (max-height: $device-height--sm-min - 1px) { @content; }
+// }
+
+@mixin for-device--xs-only {
+    @include for-width--xs-only {
+        @include for-height--xs-only {
+            @content;
+        }
+    }
+}
+@mixin for-device--xs-down {
+    @include for-width--xs-down {
+        @include for-height--xs-down {
+            @content;
+        }
+    }
+}
+
+@mixin for-device--sm-only {
+    @include for-width--sm-only {
+        @include for-height--sm-only {
+            @content;
+        }
+    }
+}
+@mixin for-device--sm-up {
+    @include for-width--sm-up {
+        @include for-height--sm-up {
+            @content;
+        }
+    }
+}
+@mixin for-device--sm-down {
+    @include for-width--sm-down {
+        @include for-height--sm-down {
+            @content;
+        }
+    }
+}
+
+@mixin for-device--md-only {
+    @include for-width--md-only {
+        @include for-height--md-only {
+            @content;
+        }
+    }
+}
+@mixin for-device--md-up {
+    @include for-width--md-up {
+        @include for-height--md-up {
+            @content;
+        }
+    }
+}
+@mixin for-device--md-down {
+    @include for-width--md-down {
+        @include for-height--md-down {
+            @content;
+        }
+    }
+}
+
+@mixin for-device--lg-only {
+    @include for-width--lg-only {
+        @include for-height--lg-only {
+            @content;
+        }
+    }
+}
+@mixin for-device--lg-up {
+    @include for-width--lg-up {
+        @include for-height--lg-up {
+            @content;
+        }
+    }
+}
+@mixin for-device--lg-down {
+    @include for-width--lg-down {
+        @include for-height--lg-down {
+            @content;
+        }
+    }
+}
+
+@mixin for-device--xl-only {
+    @include for-width--xl-only {
+        @include for-height--xl-only {
+            @content;
+        }
+    }
+}
+@mixin for-device--xl-up {
+    @include for-width--xl-up {
+        @include for-height--xl-up {
+            @content;
+        }
+    }
+}
+
+
+/**
+ * ORIENTATION
+ */
+
+@mixin for-orientation--portrait{
+    @media (orientation: portrait) {@content;}
+}
+
+@mixin for-orientation--landscape{
+    @media (orientation: landscape) {@content;}
+}

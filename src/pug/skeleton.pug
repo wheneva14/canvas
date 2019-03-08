@@ -1,0 +1,37 @@
+
+block variables
+
+doctype html
+
+html
+  head
+    meta(charset="utf-8")
+    meta(name="format-detection" content="telephone=no")
+    meta(name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
+    meta(http-equiv="X-UA-Compatible" content="IE=Edge")
+    link(rel="stylesheet" href="../../cssDest/style-concat.css")
+    
+    //- link(rel="manifest" href="../../manifest/manifest.webmanifest")
+    if(env != "prod")
+      meta(name = "robots",content = "noindex,nofollow")
+    
+
+
+  body(class="chunk-"+page)
+    block loading
+      //- #loadingScreen
+    block nav
+
+    block body
+    
+    
+    
+        
+
+   
+    
+    
+    injectJS
+    script(src="../js/main.js")
+
+      

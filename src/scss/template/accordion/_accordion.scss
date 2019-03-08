@@ -1,0 +1,35 @@
+@import "./responsive-tabs";
+
+.responsive-tabs{
+    max-width: 1024px;
+    width: 100%;
+    margin: auto;
+}
+
+.responsive-tabs .resp-tab-content.des {
+    font-size: 16px;
+    color: #747474;
+    padding-left: 35px;
+    padding-right: 30px;
+}
+
+.resp-accordion.tabs-group-default span.item {
+    width: calc(100% - 67px);
+    padding-right: 25px;
+    padding-left: 10px;
+    margin-top: 5px;
+    vertical-align: middle;
+}
+
+//- active title color
+.resp-accordion.tabs-group-default{
+
+    font-size: 22px;
+    width: 100%;
+    box-sizing: border-box;
+
+    &.resp-tab-active{
+        color: #f54949;
+    }
+
+}

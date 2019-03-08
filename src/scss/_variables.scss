@@ -1,0 +1,26 @@
+/**
+*** COLOR
+**/
+
+$colors: ();
+$colors\basic: (
+    deco-1: rgb(5,36,103),
+    white: #FFF,
+    black:  #000,
+    default: color(deco-1)
+)!default;
+
+$colors: map-merge($colors, $colors\basic);
+
+/**
+*** LENGTH
+**/
+
+
+$lengths: ();
+
+$lengths\basic: (
+    width--inner-content-max: 1200px
+)!default;
+
+$lengths: map-merge($lengths, $lengths\basic);

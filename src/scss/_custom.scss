@@ -1,0 +1,29 @@
+@import './pre';
+
+html {
+    box-sizing: border-box;
+    height: 100%;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: #EEE;
+    color: #CCC;
+    font-size: 12px;
+    min-height: 100%;
+    margin: 0;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    @include for-device--xs-only {
+        background-color: orange;
+    }
+}
+
+
+@import "./cmp/cmp";
+

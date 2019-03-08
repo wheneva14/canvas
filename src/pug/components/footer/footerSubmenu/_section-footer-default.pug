@@ -1,0 +1,129 @@
+// Default footer
+footer.section-relative.section-top-66.section-bottom-34.page-footer.bg-gray-base.context-dark
+  .shell
+    .range.range-sm-center.text-lg-left
+      .cell-sm-2.cell-md-2
+        h6.text-uppercase.text-spacing-60= footer_title_followus
+        ul.footerContact
+          li
+            a.text-uppercase.text-ubold(href="https://www.facebook.com/bibasset/",target="_blank")
+              img(src="../../images/jp/index/top/facebook_icon.svg",class="top_icon")
+
+          li
+            a.text-uppercase.text-ubold(href=line_link,target="_blank")
+              img(src="../../images/jp/index/top/line_icon.svg",class="top_icon")
+            
+
+      .cell-sm-10.cell-md-10.footerRight
+        .range.range-xs-left.range-md-center
+
+          //- .cell-xs-7.text-xs-left.cell-md-4.cell-lg-3.cell-lg-push-4
+          //-   h6.text-uppercase.text-spacing-60 Latest news
+
+          //-   +widget-post(cfg.nav.blog.submenu.classic.submenu.singlePost.href, "05/14/2015", "Let’s Change the world", null, "text-picton-blue")
+          //-   +widget-post(cfg.nav.blog.submenu.classic.submenu.singlePost.href, "05/14/2015", "The meaning of Web Design", null, "text-picton-blue")
+          //-   +widget-post(cfg.nav.blog.submenu.classic.submenu.singlePost.href, "05/14/2015", "Get Started with TemplateMonster", null, "text-picton-blue")
+
+          .cell-xs-6.offset-top-41.offset-xs-top-0.text-xs-left.cell-md-2.cell-lg-2.cell-lg-push-3
+            h6.text-uppercase.text-spacing-60= footer_title_sitemap
+            .reveal-block
+              .reveal-inline-block
+                ul.list.list-marked
+                  li
+                    a(href="aboutUs.html",class="text-bold")= footer_submenu_1
+                ul.list.list-unstyled.list-sub
+                  li
+                    a(href="comingSoon.html")= comingSoon_text1
+                  li
+                    a(href="aboutUs.html")= footer_submenu_2
+                  li
+                    a(href="aboutUs.html#aboutusMain")= footer_submenu_3
+                  li
+                    a(href="aboutUs.html#partners")= partners_title
+                  li
+                    a(href="news.html")= footer_submenu_4
+
+          .cell-xs-6.offset-top-41.offset-xs-top-0.text-xs-left.cell-md-2.cell-lg-2.cell-lg-push-3
+            h6.text-uppercase.text-spacing-60 　
+            .reveal-block
+              .reveal-inline-block
+                ul.list.list-marked
+                  li
+                    a(href="service.html",class="text-bold")= footer_submenu_5
+                ul.list.list-unstyled.list-sub
+                  li
+                    a(href="service.html")= footer_submenu_6
+                  li
+                    a(href="service.html#serviceDetail")= footer_submenu_19
+                  //- li
+                  //-   a(href="faq.html")= footer_submenu_12
+                  li
+                    a(href="faq.html")= nav_faq   
+                  
+                  //- li
+                  //-   a(href="service.html")= footer_submenu_8
+
+          .cell-xs-6.offset-top-41.offset-xs-top-0.text-xs-left.cell-md-2.cell-lg-2.cell-lg-push-3
+            h6.text-uppercase.text-spacing-60 　
+            .reveal-block
+              .reveal-inline-block
+                ul.list.list-marked
+                  li
+                    a(href="event1.html",class="text-bold")= event_text1
+                ul.list.list-unstyled.list-sub
+                  li
+                    a(href="event1.html")= event_text1
+
+          .cell-xs-6.offset-top-41.offset-xs-top-0.text-xs-left.cell-md-2.cell-lg-2.cell-lg-push-3
+            h6.text-uppercase.text-spacing-60 　
+            .reveal-block
+              .reveal-inline-block
+                ul.list.list-marked
+                  li
+                    a(href="products.html",class="text-bold")= footer_submenu_9
+                ul.list.list-unstyled.list-sub
+                  li
+                    a(href="products.html#productsTab1")= footer_submenu_10
+                  li
+                    a(href="products.html#productsTab2")= footer_submenu_11
+                  li
+                    a(href="products.html#oversea")= footer_submenu_7
+
+          .cell-xs-6.offset-top-41.offset-xs-top-0.text-xs-left.cell-md-2.cell-lg-2.cell-lg-push-3
+            h6.text-uppercase.text-spacing-60 　
+            .reveal-block
+              .reveal-inline-block
+                ul.list.list-marked
+                  li
+                    //- a(href="faq.html",class="text-bold")= nav_faq
+                    a(href="partners.html" class="text-bold")= partners_banner    
+                //- ul.list.list-unstyled.list-sub
+                //-   li
+                //-     a(href="faq.html")= nav_faq   
+                ul.list.list-unstyled.list-sub
+                  li
+                    a(href="partners.html")= partners_banner         
+
+          .cell-xs-6.offset-top-41.offset-xs-top-0.text-xs-left.cell-md-2.cell-lg-2.cell-lg-push-3
+            h6.text-uppercase.text-spacing-60 　
+            .reveal-block
+              .reveal-inline-block
+                ul.list.list-marked
+                  li
+                    a(href="contactUs.html",class="text-bold")= footer_submenu_15
+                ul.list.list-unstyled.list-sub
+                  li
+                    a(href="contactUs.html#triggerDetail")= about_intro
+                  li
+                    a(href="contactUs.html#formWrap")= footer_submenu_16
+                  li
+                    a(href="contactUs.html#map")= footer_submenu_17
+   
+  .shell.offset-top-50
+    p.license #{footer_license}
+    p.small.text-darker #{footer_submenu_18}
+      | &nbsp;
+      span#copyright-year 
+      | &nbsp; #{copyright_tails}
+  script.
+    (function(){document.getElementById("copyright-year").innerHTML = new Date().getFullYear();})();

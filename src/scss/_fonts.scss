@@ -1,0 +1,17 @@
+/**
+*** FONTS
+**/
+
+$font-family--default: Arial, 'Microsoft JhengHei', 'Microsoft YaHei','黑體', 'STHeiti', 'LiHei Pro', SimHei, SumSun, Serif;
+
+$font-sizes: (
+    default: 16px
+);
+
+$font-sizes\extend: ()!default;
+
+$font-sizes: map-merge($font-sizes, $font-sizes\extend);
+
+$line-height--default: 1.428571429;
+
+

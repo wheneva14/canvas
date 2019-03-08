@@ -1,0 +1,15 @@
+.cmp-panel {
+
+    /**
+    *** NOSCRIPT HINT PANEL
+    **/
+
+    &.cmp-panel--noscript-hint {
+        background-color: red;
+        padding: 20px;
+        > .cmp-panel__title {
+            color: #FFF;
+            margin: 0;
+        }
+    }
+}
