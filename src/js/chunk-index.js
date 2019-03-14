@@ -30,22 +30,22 @@ class Ball {
     ctx.fill();
     ctx.strokeStyle = this.color;
     ctx.stroke();
-    ctx.closePath();
+    
     
   }
 
-  update() {
+  update(delta) {
+    
     if(this.y + this.radius + this.dy > canvasLogicalHeight) {
       this.dy = -this.dy * friction;
     } else {
-      this.dy += gravity;
+      this.dy += gravity*delta;
     }
     if(this.x + this.radius + this.dx > canvasLogicalWidth || this.x - this.radius + this.dx < 0 ) {
       this.dx = -this.dx;
     }
-    this.x += this.dx;
+    this.x += this.dx*delta;
     this.y += this.dy;
-    this.draw();
 
   }
 
@@ -66,7 +66,7 @@ var colorArray = [
   "#F0CFC4",
   "#D8726B",
 ]
-var gravity = 1;
+var gravity = 0.06;
 var friction = 0.87;
 var mouse = {
   x : undefined,
@@ -76,13 +76,17 @@ var mouse = {
 var animationFrame;
 var ballArray = [];
 
+var canvasReal = document.createElement('canvas');
 var pixelRatio = window.devicePixelRatio || 1;
 var canvas = document.createElement('canvas');
-canvas.setAttribute("id", "canvas");
+canvasReal.setAttribute("id", "canvas");
 canvas.height=window.innerHeight * pixelRatio;
 canvas.width=window.innerWidth * pixelRatio;
-document.body.append(canvas);
+canvasReal.height=window.innerHeight * pixelRatio;
+canvasReal.width=window.innerWidth * pixelRatio;
+document.body.append(canvasReal);
 var ctx = canvas.getContext("2d");
+var ctxReal = canvasReal.getContext("2d");
 var canvasLogicalWidth = document.getElementById("canvas").clientWidth;
 var canvasLogicalHeight = document.getElementById("canvas").clientHeight;
 
@@ -103,12 +107,12 @@ window.addEventListener("resize", function() {
   init();
 })
 
-canvas.addEventListener('touchmove', function(e) {
+window.addEventListener('touchmove', function(e) {
   // Cache the client X/Y coordinates
   mouse.x = e.touches[0].clientX;
   mouse.y = e.touches[0].clientY;
 }, false);
-canvas.addEventListener('touchend', function(e) {
+window.addEventListener('touchend', function(e) {
   // Cache the client X/Y coordinates
   mouse.x = undefined;
   mouse.y = undefined;
@@ -118,30 +122,31 @@ canvas.addEventListener('touchend', function(e) {
 
 
 var spawnId;
-canvas.addEventListener("mousedown", function(event) {
+window.addEventListener("mousedown", function(event) {
  
     spawnId = setInterval(function() {
       var radius = randomInt(8, 20);
       var x = mouse.x;
       var y = mouse.y;
-      var dx = randomInt(-2, 2);
+      var dx = (Math.random()*0.24)-0.12;
       var dy = randomInt(-2, 2);
       var color = colorArray[randomInt(0,colorArray.length-1)];
       ballArray.push(new Ball(x, y, radius, dx, dy, color));
+
     }, 40)
       
   
 })
-canvas.addEventListener("mouseup", function() {
+window.addEventListener("mouseup", function() {
   clearInterval(spawnId);
 })
 
-canvas.addEventListener("touchstart", function() {
+window.addEventListener("touchstart", function() {
   spawnId = setInterval(function() {
     var radius = randomInt(8, 20);
     var x = mouse.x;
     var y = mouse.y;
-    var dx = randomInt(-2, 2);
+    var dx = (Math.random()*0.24)-0.12;
     var dy = randomInt(-2, 2);
     var color = colorArray[randomInt(0,colorArray.length-1)];
     ballArray.push(new Ball(x, y, radius, dx, dy, color));
@@ -156,12 +161,12 @@ function init() {
     var radius = randomInt(8, 20);
     var x = randomInt(0, canvasLogicalWidth - radius - radius) + radius;
     var y = randomInt(0, canvasLogicalHeight - radius);
-    var dx = randomInt(-2, 2);
+    var dx = (Math.random()*0.24)-0.12;
     var dy = randomInt(-2, 2);
     var color = colorArray[randomInt(0,colorArray.length-1)];
     ballArray.push(new Ball(x, y, radius, dx, dy, color));
   }
-  animate();
+  requestAnimationFrame(animate);
 }
 
 
@@ -169,12 +174,46 @@ function randomInt(min, max) {
   return Math.floor(Math.random() * (max-min+1) +min)
 }
 
+// var lastCalledTime;
+// var fps;
+// var diff;
 
-function animate() {
-  animationFrame = requestAnimationFrame(animate);
+var delta = 0;
+var lastRanTime = 0;
+var timestep = 1000/60;
+var loopPerSecound;
+var lastLogTime = 0;
+var cornerLength = 50 ;
+var i = 0;
+var j = 0;
+var fontSize = 20;
+
+function animate(timestamp) {
+
+  
+  lastLogTime == 0 ? lastLogTime = timestamp : null;
+  delta += timestamp - lastRanTime;
+  if(timestamp - lastLogTime >= 300) {
+    loopPerSecound = Math.floor(1000 / (timestamp - lastRanTime));
+    lastLogTime = timestamp;
+  }
+
+  lastRanTime = timestamp;
+  // if(!lastCalledTime) {
+  //   lastCalledTime = Date.now();
+  //   fps = 0;
+  // } else {
+  //   diff = (Date.now() - lastCalledTime)/1000;
+  //   lastCalledTime = Date.now();
+  //   fps = Math.round(1/diff);
+  // }
+
+
+
   ctx.clearRect(0, 0, canvasLogicalWidth, canvasLogicalHeight);
+  ctxReal.clearRect(0, 0, canvasReal.width, canvasReal.height);
 
-  var cornerLength = 50 ;
+  
   ctx.beginPath();
   ctx.moveTo(0, cornerLength);
   ctx.lineTo(0, 0);
@@ -192,11 +231,22 @@ function animate() {
   ctx.strokeStyle = "red";
   ctx.stroke();
 
-  for(var i=0; i<ballArray.length;i++) {
-    ballArray[i].update();
+
+  
+  while(delta >= timestep) {
+    for(i=0; i<ballArray.length;i++) {
+      ballArray[i].update(delta);
+    }
+    delta -= timestep;
   }
 
-  var fontSize = 20;
+  
+
+  for(j=0; j<ballArray.length;j++) {
+    ballArray[j].draw();
+  }
+  
+  
   ctx.font = `${fontSize}px times`;
   ctx.fillStyle = "#333";
   ctx.fillText(canvas.width, 20, 20);
@@ -205,7 +255,11 @@ function animate() {
   ctx.fillText(canvasLogicalHeight, 20, 80);
   ctx.fillText(pixelRatio, 20, 100);
   ctx.fillText(ballArray.length, 20, 120);
-  
+  ctx.fillText(loopPerSecound, 20, 140);
+
+
+  ctxReal.drawImage(canvas,0 ,0);
+  animationFrame = requestAnimationFrame(animate);
 }
 
 
