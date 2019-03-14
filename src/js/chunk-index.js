@@ -183,6 +183,11 @@ var lastRanTime = 0;
 var timestep = 1000/60;
 var loopPerSecound;
 var lastLogTime = 0;
+var cornerLength = 50 ;
+var i = 0;
+var j = 0;
+var fontSize = 20;
+
 function animate(timestamp) {
 
   
@@ -208,7 +213,7 @@ function animate(timestamp) {
   ctx.clearRect(0, 0, canvasLogicalWidth, canvasLogicalHeight);
   ctxReal.clearRect(0, 0, canvasReal.width, canvasReal.height);
 
-  var cornerLength = 50 ;
+  
   ctx.beginPath();
   ctx.moveTo(0, cornerLength);
   ctx.lineTo(0, 0);
@@ -229,7 +234,7 @@ function animate(timestamp) {
 
   
   while(delta >= timestep) {
-    for(var i=0; i<ballArray.length;i++) {
+    for(i=0; i<ballArray.length;i++) {
       ballArray[i].update(delta);
     }
     delta -= timestep;
@@ -237,11 +242,11 @@ function animate(timestamp) {
 
   
 
-  for(var i=0; i<ballArray.length;i++) {
-    ballArray[i].draw();
+  for(j=0; j<ballArray.length;j++) {
+    ballArray[j].draw();
   }
   
-  var fontSize = 20;
+  
   ctx.font = `${fontSize}px times`;
   ctx.fillStyle = "#333";
   ctx.fillText(canvas.width, 20, 20);
