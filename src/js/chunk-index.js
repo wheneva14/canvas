@@ -35,15 +35,16 @@ class Ball {
   }
 
   update(delta) {
+    
     if(this.y + this.radius + this.dy > canvasLogicalHeight) {
       this.dy = -this.dy * friction;
     } else {
-      this.dy += gravity;
+      this.dy += gravity*delta;
     }
     if(this.x + this.radius + this.dx > canvasLogicalWidth || this.x - this.radius + this.dx < 0 ) {
       this.dx = -this.dx;
     }
-    this.x += this.dx;
+    this.x += this.dx*delta;
     this.y += this.dy;
 
   }
@@ -65,7 +66,7 @@ var colorArray = [
   "#F0CFC4",
   "#D8726B",
 ]
-var gravity = 1;
+var gravity = 0.06;
 var friction = 0.87;
 var mouse = {
   x : undefined,
@@ -127,7 +128,7 @@ window.addEventListener("mousedown", function(event) {
       var radius = randomInt(8, 20);
       var x = mouse.x;
       var y = mouse.y;
-      var dx = randomInt(-2, 2);
+      var dx = (Math.random()*0.24)-0.12;
       var dy = randomInt(-2, 2);
       var color = colorArray[randomInt(0,colorArray.length-1)];
       ballArray.push(new Ball(x, y, radius, dx, dy, color));
@@ -145,7 +146,7 @@ window.addEventListener("touchstart", function() {
     var radius = randomInt(8, 20);
     var x = mouse.x;
     var y = mouse.y;
-    var dx = randomInt(-2, 2);
+    var dx = (Math.random()*0.24)-0.12;
     var dy = randomInt(-2, 2);
     var color = colorArray[randomInt(0,colorArray.length-1)];
     ballArray.push(new Ball(x, y, radius, dx, dy, color));
@@ -160,7 +161,7 @@ function init() {
     var radius = randomInt(8, 20);
     var x = randomInt(0, canvasLogicalWidth - radius - radius) + radius;
     var y = randomInt(0, canvasLogicalHeight - radius);
-    var dx = randomInt(-2, 2);
+    var dx = (Math.random()*0.24)-0.12;
     var dy = randomInt(-2, 2);
     var color = colorArray[randomInt(0,colorArray.length-1)];
     ballArray.push(new Ball(x, y, radius, dx, dy, color));
@@ -225,12 +226,16 @@ function animate(timestamp) {
   ctx.strokeStyle = "red";
   ctx.stroke();
 
+
+  
   while(delta >= timestep) {
     for(var i=0; i<ballArray.length;i++) {
       ballArray[i].update(delta);
     }
     delta -= timestep;
   }
+
+  
 
   for(var i=0; i<ballArray.length;i++) {
     ballArray[i].draw();
