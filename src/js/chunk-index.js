@@ -14,20 +14,21 @@ export default function indexInit () {
 
 
 class Ball {
-  constructor(x,y,radius, dx, dy, color) {
+  constructor(x,y,radius) {
     this.x = x;
     this.y = y;
-    this.dx = dx;
-    this.dy = dy;
+    this.dx = (Math.random()*0.24)-0.12;
+    this.dy = (Math.random()*0.24)-0.12;
     this.radius = radius;
-    this.color = color;
+    this.color = colorArray[randomInt(0,colorArray.length-1)];
+    this.mass = 1;
   }
 
   draw() {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
     ctx.fillStyle = this.color;
-    ctx.fill();
+    // ctx.fill();
     ctx.strokeStyle = this.color;
     ctx.stroke();
     
@@ -36,27 +37,113 @@ class Ball {
 
   update(delta) {
     
-    if(this.y + this.radius + this.dy > window.innerHeight) {
-      this.dy = -this.dy * friction;
-    } else {
-      this.dy += gravity*delta;
+    for(let i = 0 ; i< ballArray.length; i++ ) {
+      if(this === ballArray[i]) {
+        continue;
+      }
+      if(getDistance(this.x, this.y, ballArray[i].x, ballArray[i].y) < this.radius+ballArray[i].radius) {
+        resolveCollision(this, ballArray[i]);
+      }
     }
-    if(this.x + this.radius + this.dx > window.innerWidth || this.x - this.radius + this.dx < 0 ) {
+
+    if(this.x+this.radius > window.innerWidth || this.x-this.radius < 0) {
       this.dx = -this.dx;
     }
+    if(this.y+this.radius > window.innerHeight || this.y-this.radius < 0) {
+      this.dy = -this.dy;
+    }
     this.x += this.dx*delta;
-    this.y += this.dy;
+    this.y += this.dy*delta;
+    // if(this.y + this.radius + this.dy > window.innerHeight) {
+    //   this.dy = -this.dy * friction;
+    // } else {
+    //   this.dy += gravity*delta;
+    // }
+    // if(this.x + this.radius + this.dx > window.innerWidth || this.x - this.radius + this.dx < 0 ) {
+    //   this.dx = -this.dx;
+    // }
+    // this.x += this.dx*delta;
+    // this.y += this.dy;
 
   }
 
-  set(x,y,dx,dy) {
-    x ? this.x = x : null;
-    y ? this.y = y : null;
-    dx ? this.dx = dx : null;
-    dy ? this.dy = dy : null;
-  }
+  
 }
 
+
+function init() {
+  cancelAnimationFrame(animationFrame);
+  ballArray = [];
+  for( var i = 0; i<2 ; i++) {
+    var radius = randomInt(200, 220);
+    var x = randomInt(0, window.innerWidth - radius - radius) + radius;
+    var y = randomInt(0, window.innerHeight - radius - radius) + radius;
+    
+
+    if(i>0) {
+      for (let j =0; j<ballArray.length; j++) {
+        if(getDistance(x,y,ballArray[j].x,ballArray[j].y) < radius+ballArray[j].radius) {
+          x = randomInt(0, window.innerWidth - radius - radius) + radius;
+          y = randomInt(0, window.innerHeight - radius - radius) + radius;
+          j = -1;
+        }
+      }
+    }
+
+    ballArray.push(new Ball(x, y, radius));
+  }
+  requestAnimationFrame(animate);
+}
+
+
+
+function rotate(velocity, angle) {
+  const rotatedVelocities = {
+      x: velocity.x * Math.cos(angle) - velocity.y * Math.sin(angle),
+      y: velocity.x * Math.sin(angle) + velocity.y * Math.cos(angle)
+  };
+
+  return rotatedVelocities;
+}
+
+
+function resolveCollision(particle, otherParticle) {
+  const xVelocityDiff = particle.velocity.x - otherParticle.velocity.x;
+  const yVelocityDiff = particle.velocity.y - otherParticle.velocity.y;
+
+  const xDist = otherParticle.x - particle.x;
+  const yDist = otherParticle.y - particle.y;
+
+  // Prevent accidental overlap of particles
+  if (xVelocityDiff * xDist + yVelocityDiff * yDist >= 0) {
+
+      // Grab angle between the two colliding particles
+      const angle = -Math.atan2(otherParticle.y - particle.y, otherParticle.x - particle.x);
+
+      // Store mass in var for better readability in collision equation
+      const m1 = particle.mass;
+      const m2 = otherParticle.mass;
+
+      // Velocity before equation
+      const u1 = rotate(particle.velocity, angle);
+      const u2 = rotate(otherParticle.velocity, angle);
+
+      // Velocity after 1d collision equation
+      const v1 = { x: u1.x * (m1 - m2) / (m1 + m2) + u2.x * 2 * m2 / (m1 + m2), y: u1.y };
+      const v2 = { x: u2.x * (m1 - m2) / (m1 + m2) + u1.x * 2 * m2 / (m1 + m2), y: u2.y };
+
+      // Final velocity after rotating axis back to original location
+      const vFinal1 = rotate(v1, -angle);
+      const vFinal2 = rotate(v2, -angle);
+
+      // Swap particle velocities for realistic bounce effect
+      particle.velocity.x = vFinal1.x;
+      particle.velocity.y = vFinal1.y;
+
+      otherParticle.velocity.x = vFinal2.x;
+      otherParticle.velocity.y = vFinal2.y;
+  }
+}
 
 
 var colorArray = [
@@ -110,57 +197,49 @@ window.addEventListener('touchend', function(e) {
   mouse.x = undefined;
   mouse.y = undefined;
 
-  clearInterval(spawnId);
+  // clearInterval(spawnId);
 }, false);
 
+function getDistance(x1, y1, x2, y2) {
+  let xTotal = x1-x2;
+  let yTotal = y1-y2;
 
+  return ((xTotal*xTotal)+(yTotal*yTotal))**(1/2);
+}
 var spawnId;
 window.addEventListener("mousedown", function(event) {
  
-    spawnId = setInterval(function() {
-      var radius = randomInt(8, 20);
-      var x = mouse.x;
-      var y = mouse.y;
-      var dx = (Math.random()*0.24)-0.12;
-      var dy = randomInt(-2, 2);
-      var color = colorArray[randomInt(0,colorArray.length-1)];
-      ballArray.push(new Ball(x, y, radius, dx, dy, color));
+    // spawnId = setInterval(function() {
+    //   var radius = randomInt(8, 20);
+    //   var x = mouse.x;
+    //   var y = mouse.y;
+    //   var dx = (Math.random()*0.24)-0.12;
+    //   var dy = randomInt(-2, 2);
+    //   var color = colorArray[randomInt(0,colorArray.length-1)];
+    //   ballArray.push(new Ball(x, y, radius, dx, dy, color));
 
-    }, 40)
+    // }, 40)
       
   
 })
 window.addEventListener("mouseup", function() {
-  clearInterval(spawnId);
+  // clearInterval(spawnId);
 })
 
 window.addEventListener("touchstart", function() {
-  spawnId = setInterval(function() {
-    var radius = randomInt(8, 20);
-    var x = mouse.x;
-    var y = mouse.y;
-    var dx = (Math.random()*0.24)-0.12;
-    var dy = randomInt(-2, 2);
-    var color = colorArray[randomInt(0,colorArray.length-1)];
-    ballArray.push(new Ball(x, y, radius, dx, dy, color));
-  }, 40)
+  // spawnId = setInterval(function() {
+  //   var radius = randomInt(8, 20);
+  //   var x = mouse.x;
+  //   var y = mouse.y;
+  //   var dx = (Math.random()*0.24)-0.12;
+  //   var dy = randomInt(-2, 2);
+  //   var color = colorArray[randomInt(0,colorArray.length-1)];
+  //   ballArray.push(new Ball(x, y, radius, dx, dy, color));
+  // }, 40)
 })
 
 
-function init() {
-  cancelAnimationFrame(animationFrame);
-  ballArray = [];
-  for( var i = 0; i<0 ; i++) {
-    var radius = randomInt(8, 20);
-    var x = randomInt(0, window.innerWidth - radius - radius) + radius;
-    var y = randomInt(0, window.innerHeight - radius);
-    var dx = (Math.random()*0.24)-0.12;
-    var dy = randomInt(-2, 2);
-    var color = colorArray[randomInt(0,colorArray.length-1)];
-    ballArray.push(new Ball(x, y, radius, dx, dy, color));
-  }
-  requestAnimationFrame(animate);
-}
+
 
 
 function randomInt(min, max) {
@@ -191,11 +270,8 @@ function animate(timestamp) {
 
   lastRanTime = timestamp;
 
-
-
   ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-  
   ctx.beginPath();
   ctx.moveTo(0, cornerLength);
   ctx.lineTo(0, 0);
@@ -213,8 +289,6 @@ function animate(timestamp) {
   ctx.strokeStyle = "red";
   ctx.stroke();
 
-
-  
   while(delta >= timestep) {
     for(i=0; i<ballArray.length;i++) {
       ballArray[i].update(delta);
@@ -222,11 +296,14 @@ function animate(timestamp) {
     delta -= timestep;
   }
 
-  
+  ballArray.forEach(function(element) {
+    element.draw();
+  })
 
-  for(j=0; j<ballArray.length;j++) {
-    ballArray[j].draw();
-  }
+  // for(j=0; j<ballArray.length;j++) {
+  //   ballArray[j].draw();
+  // }
+  
   
   
   ctx.font = `${fontSize}px times`;
