@@ -36,12 +36,12 @@ class Ball {
 
   update(delta) {
     
-    if(this.y + this.radius + this.dy > canvasLogicalHeight) {
+    if(this.y + this.radius + this.dy > window.innerHeight) {
       this.dy = -this.dy * friction;
     } else {
       this.dy += gravity*delta;
     }
-    if(this.x + this.radius + this.dx > canvasLogicalWidth || this.x - this.radius + this.dx < 0 ) {
+    if(this.x + this.radius + this.dx > window.innerWidth || this.x - this.radius + this.dx < 0 ) {
       this.dx = -this.dx;
     }
     this.x += this.dx*delta;
@@ -76,19 +76,14 @@ var mouse = {
 var animationFrame;
 var ballArray = [];
 
-var canvasReal = document.createElement('canvas');
+
 var pixelRatio = window.devicePixelRatio || 1;
 var canvas = document.createElement('canvas');
-canvasReal.setAttribute("id", "canvas");
+canvas.setAttribute("id", "canvas");
 canvas.height=window.innerHeight * pixelRatio;
 canvas.width=window.innerWidth * pixelRatio;
-canvasReal.height=window.innerHeight * pixelRatio;
-canvasReal.width=window.innerWidth * pixelRatio;
-document.body.append(canvasReal);
+document.body.append(canvas);
 var ctx = canvas.getContext("2d");
-var ctxReal = canvasReal.getContext("2d");
-var canvasLogicalWidth = document.getElementById("canvas").clientWidth;
-var canvasLogicalHeight = document.getElementById("canvas").clientHeight;
 
 ctx.scale(pixelRatio, pixelRatio);
 
@@ -101,8 +96,6 @@ window.addEventListener("mousemove", function(event){
 window.addEventListener("resize", function() {
   canvas.height=window.innerHeight * pixelRatio;
   canvas.width=window.innerWidth * pixelRatio;
-  canvasLogicalWidth = document.getElementById("canvas").clientWidth;
-  canvasLogicalHeight = document.getElementById("canvas").clientHeight;
   ctx.scale(pixelRatio, pixelRatio);
   init();
 })
@@ -159,8 +152,8 @@ function init() {
   ballArray = [];
   for( var i = 0; i<0 ; i++) {
     var radius = randomInt(8, 20);
-    var x = randomInt(0, canvasLogicalWidth - radius - radius) + radius;
-    var y = randomInt(0, canvasLogicalHeight - radius);
+    var x = randomInt(0, window.innerWidth - radius - radius) + radius;
+    var y = randomInt(0, window.innerHeight - radius);
     var dx = (Math.random()*0.24)-0.12;
     var dy = randomInt(-2, 2);
     var color = colorArray[randomInt(0,colorArray.length-1)];
@@ -174,9 +167,7 @@ function randomInt(min, max) {
   return Math.floor(Math.random() * (max-min+1) +min)
 }
 
-// var lastCalledTime;
-// var fps;
-// var diff;
+
 
 var delta = 0;
 var lastRanTime = 0;
@@ -199,34 +190,25 @@ function animate(timestamp) {
   }
 
   lastRanTime = timestamp;
-  // if(!lastCalledTime) {
-  //   lastCalledTime = Date.now();
-  //   fps = 0;
-  // } else {
-  //   diff = (Date.now() - lastCalledTime)/1000;
-  //   lastCalledTime = Date.now();
-  //   fps = Math.round(1/diff);
-  // }
 
 
 
-  ctx.clearRect(0, 0, canvasLogicalWidth, canvasLogicalHeight);
-  ctxReal.clearRect(0, 0, canvasReal.width, canvasReal.height);
+  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
   
   ctx.beginPath();
   ctx.moveTo(0, cornerLength);
   ctx.lineTo(0, 0);
   ctx.lineTo(cornerLength, 0);
-  ctx.moveTo(canvasLogicalWidth-cornerLength, 0);
-  ctx.lineTo(canvasLogicalWidth, 0);
-  ctx.lineTo(canvasLogicalWidth, cornerLength);
-  ctx.moveTo(canvasLogicalWidth-cornerLength, canvasLogicalHeight);
-  ctx.lineTo(canvasLogicalWidth, canvasLogicalHeight);
-  ctx.lineTo(canvasLogicalWidth, canvasLogicalHeight-cornerLength);
-  ctx.moveTo(0, canvasLogicalHeight-cornerLength);
-  ctx.lineTo(0, canvasLogicalHeight);
-  ctx.lineTo(cornerLength, canvasLogicalHeight);
+  ctx.moveTo(window.innerWidth-cornerLength, 0);
+  ctx.lineTo(window.innerWidth, 0);
+  ctx.lineTo(window.innerWidth, cornerLength);
+  ctx.moveTo(window.innerWidth-cornerLength, window.innerHeight);
+  ctx.lineTo(window.innerWidth, window.innerHeight);
+  ctx.lineTo(window.innerWidth, window.innerHeight-cornerLength);
+  ctx.moveTo(0, window.innerHeight-cornerLength);
+  ctx.lineTo(0, window.innerHeight);
+  ctx.lineTo(cornerLength, window.innerHeight);
   ctx.lineWidth = 3;
   ctx.strokeStyle = "red";
   ctx.stroke();
@@ -251,14 +233,13 @@ function animate(timestamp) {
   ctx.fillStyle = "#333";
   ctx.fillText(canvas.width, 20, 20);
   ctx.fillText(canvas.height, 20, 40);
-  ctx.fillText(canvasLogicalWidth, 20, 60);
-  ctx.fillText(canvasLogicalHeight, 20, 80);
+  ctx.fillText(window.innerWidth, 20, 60);
+  ctx.fillText(window.innerHeight, 20, 80);
   ctx.fillText(pixelRatio, 20, 100);
   ctx.fillText(ballArray.length, 20, 120);
   ctx.fillText(loopPerSecound, 20, 140);
 
 
-  ctxReal.drawImage(canvas,0 ,0);
   animationFrame = requestAnimationFrame(animate);
 }
 
